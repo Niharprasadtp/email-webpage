@@ -1,0 +1,115 @@
+    :root {
+    --secondary: #ff0185; /* Replace with your desired color */
+    --primary: #091126; /* Replace with your desired color */
+         }
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'poppins', sans-serif;
+        }
+
+        body {
+            background: url('images/bg.jpg') no-repeat;
+            background-size: cover;
+            background-position: center;
+            height: 100vh;
+             display: flex;
+               justify-content: center;
+              align-items: center;
+            /* background-image: linear-gradient( 145deg , var(--secondary), var(--primary));*/
+            
+        }
+
+        .container {
+            border-radius: 3rem;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: rgba(255, 255, 255, 0.1); /* R, G, B values for white with 50% opacity */
+
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            text-align: center;
+        }
+
+        h1 {
+            color: #fff;
+            font-size: 24px;
+            margin-bottom: 20px;
+        }
+
+        .form-box {
+           /* background-color:   var(--primary);*/
+           background-color: rgba(255, 255, 255, 0.2); /* R, G, B values for white with 50% opacity */
+
+            padding: 20px;
+            box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+            border-radius: 10px;
+        }
+
+        .form-group {
+            margin-bottom: 15px;
+        }
+
+        label {
+            font-weight: bold;
+        }
+
+        input[type="text"],
+        textarea {
+            width: 100%;
+            padding: 1rem;
+            /*border: .08rem solid var(--secondary);*/
+            background-color: rgba(255, 255, 255, 0.5); /* R, G, B values for white with 50% opacity */
+
+            border-radius: 2rem;
+            background-color: unset;
+            color: aliceblue;
+            font-size: 1rem;
+            
+            
+        }
+
+        input[type="button"],
+        button.view-draft-button {
+            /*background-color: var(--secondary);*/
+            background-color: rgba(255, 255, 255, 0.5); /* R, G, B values for white with 50% opacity */
+
+            padding: 1rem 2rem;
+            color: #fff;
+            border-radius: 2rem;
+            border: none;
+            
+        }
+
+        input[type="button"]:hover,
+        button.view-draft-button:hover {
+            background-color: #0056b3;
+        }
+
+        .view-draft-button {
+            margin-left: 10px;
+        }
+
+        #emailForm {
+            background-color: rgba(255, 255, 255, 0.1); /* R, G, B values for white with 50% opacity */
+
+            width: 100%;
+            padding: 1rem;
+           /* border: .08rem solid;*/
+            border-radius: 2rem;
+            background-color: unset;
+            color: aliceblue;
+            font-size: 1rem;
+
+        }
+
+
+#fromEmail::placeholder {
+    color: #b2a2f9; 
+  }
+  
+  #message::placeholder {
+    color: #72bbeb; 
+  }
+  

@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Email Form</title>
+    <link rel="stylesheet" href="efstyles.css"> 
+
+</head>
+<body>
+    <div class="container">
+        <h1>Email Form</h1>
+        <form id="emailForm">
+            <div class="form-box">
+                <div class="form-group">
+                    <label for="fromEmail">To Email Address:</label>
+                    <input type="text" id="fromEmail" placeholder="Enter To Email Address">
+                </div>
+                <div class="form-group">
+                    <label for="message">Message:</label>
+                    <textarea id="message" rows="4" placeholder="Enter your message"></textarea>
+                </div>
+                <div class="form-group">
+                    <input type="button" value="Save Draft" onclick="saveDraft()">
+                    <input type="button" value="Send" onclick="sendMessage()">
+                    <input type="button" value="View Drafts" onclick="viewDrafts()" class="view-draft-button">
+                </div>
+            </div>
+        </form>
+    </div>
+
+    <script>
+        function saveDraft() {
+            const fromEmail = document.getElementById("fromEmail").value;
+            const message = document.getElementById("message").value;
+
+            // Check if any field is empty before saving
+            if (!fromEmail || !message) {
+                alert("Please fill in all fields before saving.");
+                return;
+            }
+
+            // Retrieve existing drafts or initialize an empty array
+            const existingDrafts = JSON.parse(localStorage.getItem("emailDrafts")) || [];
+
+            // Create a new draft object
+            const newDraft = {
+                fromEmail,
+                message,
+            };
+
+            // Add the new draft to the array
+            existingDrafts.push(newDraft);
+
+            // Store the updated drafts array in local storage
+            localStorage.setItem("emailDrafts", JSON.stringify(existingDrafts));
+
+            alert("Draft saved successfully.");
+            clearFields(); // Clear input fields
+        }
+
+        // Function to clear input fields
+        function clearFields() {
+            document.getElementById("fromEmail").value = "";
+            document.getElementById("message").value = "";
+        }
+
+        function sendMessage() {
+            const fromEmail = document.getElementById("fromEmail").value;
+            const message = document.getElementById("message").value;
+
+            // Check if any field is empty before sending
+            if (!fromEmail || !message) {
+                alert("Please fill in all fields before sending.");
+                return;
+            }
+            const sentMessages = JSON.parse(localStorage.getItem("sentMessages")) || [];
+
+            // Create a new sent message object
+            const sentMessage = {
+                fromEmail,
+                message,
+            };
+
+            // Add the new sent message to the array
+            sentMessages.push(sentMessage);
+
+            // Store the updated sent messages array in local storage
+            localStorage.setItem("sentMessages", JSON.stringify(sentMessages));
+
+            alert("Message sent successfully.");
+            clearFields(); // Clear input fields after sending
+        }
+
+        function viewDrafts() {
+            window.location.href='drafts.html';
+        }
+    </script>
+</body>
+</html>

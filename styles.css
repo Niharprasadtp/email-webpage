@@ -1,0 +1,104 @@
+:root {
+    --secondary: #ff0185; /* Replace with your desired color */
+    --primary: #091126; /* Replace with your desired color */
+         }
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'poppins', sans-serif;
+        }
+
+        body {
+            height: 100vh;
+             display: flex;
+               justify-content: center;
+              align-items: center;
+              background: url('images/bg.jpg') no-repeat;
+            background-size: cover;
+            background-position: center;
+    
+             /*background-image: linear-gradient( 145deg , var(--secondary), var(--primary));*/
+            
+        }
+
+.container { 
+    border-radius: 3rem;
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+    /*background-image: linear-gradient( 145deg , var(--primary), var(--primary), var(--primary), var(--primary));*/
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+    text-align: center;
+    background-color: rgba(255, 255, 255, 0.1); /* R, G, B values for white with 50% opacity */
+
+}
+
+.boxes {
+    background-color: rgba(255, 255, 255, 0.1); /* R, G, B values for white with 50% opacity */
+
+    border-radius: 3rem;
+    height: 400px;
+    width: 600px;
+    overflow: hidden;
+    position: relative;
+    display: flex;
+    flex-direction: row; /* Display boxes side by side */
+    flex-wrap: nowrap; /* Prevent wrapping to the next line */
+    justify-content: space-between;
+    margin-top: 20px; /* Add some margin between the "Compose" button and boxes */
+}
+
+.box {
+    background-color: rgba(255, 255, 255, 0.2); /* R, G, B values for white with 50% opacity */
+
+    /*background-image: linear-gradient( 145deg , var(--primary), var(--secondary));*/
+    border-radius: 2rem;
+    overflow: hidden;
+   
+    flex: 0 0 calc(50% - 10px); /* Set the width for each box with some spacing */
+    padding: 20px;
+    /*background-color: var(--primary);*/
+    box-shadow: 0 0 5px rgba(129, 2, 2, 0.1);
+}
+
+h1 {
+    color: #f9f9f9;
+    font-size: 24px;
+    margin-bottom: 20px;
+}
+
+.compose-button, .menu-button {
+    background-color: var(--secondary);
+    padding: 1rem 2rem;
+    color: #fff;
+    border-radius: 2rem;
+    border: none;
+}
+
+.compose-button:hover, .menu-button:hover {
+    background-color: var(--primary);
+}
+
+/* Red color for the delete button */
+ul li button {
+    background-color: red;
+    color: #fff;
+    border: none;
+    border-radius: 1rem 2rem;
+    padding: 5px 10px;
+    cursor: pointer;
+}
+
+/* Green color for the save button */
+ul li button[onclick^="editDraft"], ul li button[onclick^="sendDraft"] {
+    background-color: green;
+
+}
+#drafts , #sentMessages {
+    color: #fff;
+}
+
+ul li button[onclick^="editDraft"], ul li button[onclick^="sendDraft"]:hover{
+    background-color: var(--secondary);
+}

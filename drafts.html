@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Email Drafts</title>
+    <link rel="stylesheet" href="styles.css"> 
+</head>
+<body>
+    <div class="container">
+        <button class="compose-button" onclick="openEmailDraftPage()">Compose</button>
+        <button class="menu-button" onclick="openMenuPage()">Menu</button>
+        <div class="boxes">
+            <div class="box">
+                <h1>Draft Messages</h1>
+                <ul id="drafts">
+                </ul>
+            </div>
+            <div class="box">
+                <h1>Sent Messages</h1>
+                <ul id="sentMessages">
+                   
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Function to open the email draft page
+        function openEmailDraftPage() {
+            window.location.href = 'email-form.html';
+        }
+
+        // Function to open the menu page
+        function openMenuPage() {
+            // Redirect to the menu page (you can specify the URL)
+            window.location.href = 'email-form.html';
+        }
+
+        
+    </script>
+
+    <script>
+        // Function to open the email draft page
+        function openEmailDraftPage() {
+            window.location.href = 'email-form.html';
+        }
+        // Retrieve and display drafts from local storage
+        const draftsContainer = document.getElementById("drafts");
+        const storedDrafts = JSON.parse(localStorage.getItem("emailDrafts")) || [];
+
+        if (storedDrafts) {
+            storedDrafts.forEach((draft, index) => {
+                const listItem = document.createElement("li");
+                listItem.innerHTML = `
+                    <strong>To:</strong> ${draft.fromEmail}<br>
+                    <strong>Message:</strong> <span id="message${index}">${draft.message}</span>
+                    <button onclick="editDraft(${index})">Edit</button>
+                    <button onclick="sendDraft(${index})">Send</button>
+                `;
+                draftsContainer.appendChild(listItem);
+            });
+        }
+
+        // Retrieve and display sent messages from local storage
+        const sentMessagesContainer = document.getElementById("sentMessages");
+        const storedSentMessages = JSON.parse(localStorage.getItem("sentMessages")) || [];
+
+        if (storedSentMessages) {
+            storedSentMessages.forEach((sentMessage, index) => {
+                const listItem = document.createElement("li");
+                listItem.innerHTML = `
+                    <strong>To:</strong> ${sentMessage.fromEmail}<br>
+                    <strong>Message:</strong> ${sentMessage.message}<br>
+                    <button onclick="deleteSentMessage(${index})">Delete</button>
+                `;
+                sentMessagesContainer.appendChild(listItem);
+            });
+        }
+
+        // Function to edit a draft
+        function editDraft(index) {
+            const messageElement = document.getElementById(`message${index}`);
+            const fromEmail = prompt("Edit the email address:", storedDrafts[index].fromEmail);
+            const newMessage = prompt("Edit the message:", messageElement.textContent);
+            
+            if (fromEmail !== null && fromEmail.trim() !== "" && newMessage !== null && newMessage.trim() !== "") {
+                // Update the draft in local storage
+                storedDrafts[index].fromEmail = fromEmail;
+                storedDrafts[index].message = newMessage;
+                localStorage.setItem("emailDrafts", JSON.stringify(storedDrafts));
+
+                // Update the display
+                messageElement.textContent = newMessage;
+                refreshDraftsList();
+            }
+        }
+
+        // Function to send a draft
+        function sendDraft(index) {
+            const confirmation = confirm("Are you sure you want to send this message?");
+
+            if (confirmation) {
+                const sentDraft = storedDrafts.splice(index, 1)[0]; // Remove draft from drafts array
+                localStorage.setItem("emailDrafts", JSON.stringify(storedDrafts)); // Update drafts array in local storage
+
+                // Retrieve or initialize the sent messages array in local storage
+                const sentMessages = JSON.parse(localStorage.getItem("sentMessages")) || [];
+
+                // Add the sent draft to the sent messages array
+                sentMessages.push(sentDraft);
+
+                // Update the sent messages array in local storage
+                localStorage.setItem("sentMessages", JSON.stringify(sentMessages));
+
+                // Refresh the drafts and sent messages lists to reflect changes
+                refreshDraftsList();
+                refreshSentMessagesList();
+            }
+        }
+
+        // Function to delete a sent message
+        function deleteSentMessage(index) {
+            const confirmation = confirm("Are you sure you want to delete this sent message?");
+
+            if (confirmation) {
+                // Remove sent message from sent messages array
+                storedSentMessages.splice(index, 1);
+                localStorage.setItem("sentMessages", JSON.stringify(storedSentMessages)); // Update sent messages array in local storage
+
+                // Refresh the sent messages list to reflect changes
+                refreshSentMessagesList();
+            }
+        }
+
+        // Function to refresh the drafts list after sending or editing a draft
+        function refreshDraftsList() {
+            draftsContainer.innerHTML = ""; // Clear the current drafts list
+
+            // Rebuild the drafts list with the updated drafts
+            storedDrafts.forEach((draft, index) => {
+                const listItem = document.createElement("li");
+                listItem.innerHTML = `
+                    <strong>To:</strong> ${draft.fromEmail}<br>
+                    <strong>Message:</strong> <span id="message${index}">${draft.message}</span>
+                    <button onclick="editDraft(${index})">Edit</button>
+                    <button onclick="sendDraft(${index})">Send</button>
+                `;
+                draftsContainer.appendChild(listItem);
+            });
+        }
+
+        // Function to refresh the sent messages list after sending or deleting a sent message
+        function refreshSentMessagesList() {
+            sentMessagesContainer.innerHTML = ""; // Clear the current sent messages list
+
+            // Rebuild the sent messages list with the updated sent messages
+            storedSentMessages.forEach((sentMessage, index) => {
+                const listItem = document.createElement("li");
+                listItem.innerHTML = `
+                    <strong>To:</strong> ${sentMessage.fromEmail}<br>
+                    <strong>Message:</strong> ${sentMessage.message}<br>
+                    <button onclick="deleteSentMessage(${index})">Delete</button>
+                `;
+                sentMessagesContainer.appendChild(listItem);
+            });
+        }
+    </script>
+</body>
+</html>
