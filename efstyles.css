@@ -1,6 +1,6 @@
     :root {
-    --secondary: #ff0185; /* Replace with your desired color */
-    --primary: #091126; /* Replace with your desired color */
+    --secondary: #ff0185;
+    --primary: #091126;
          }
         * {
             margin: 0;
@@ -26,7 +26,7 @@
             max-width: 800px;
             margin: 0 auto;
             padding: 20px;
-            background-color: rgba(255, 255, 255, 0.1); /* R, G, B values for white with 50% opacity */
+            background-color: rgba(255, 255, 255, 0.1);
 
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
             text-align: center;
@@ -40,7 +40,7 @@
 
         .form-box {
            /* background-color:   var(--primary);*/
-           background-color: rgba(255, 255, 255, 0.2); /* R, G, B values for white with 50% opacity */
+           background-color: rgba(255, 255, 255, 0.2); 
 
             padding: 20px;
             box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
@@ -60,7 +60,7 @@
             width: 100%;
             padding: 1rem;
             /*border: .08rem solid var(--secondary);*/
-            background-color: rgba(255, 255, 255, 0.5); /* R, G, B values for white with 50% opacity */
+            background-color: rgba(255, 255, 255, 0.5); 
 
             border-radius: 2rem;
             background-color: unset;
@@ -73,7 +73,7 @@
         input[type="button"],
         button.view-draft-button {
             /*background-color: var(--secondary);*/
-            background-color: rgba(255, 255, 255, 0.5); /* R, G, B values for white with 50% opacity */
+            background-color: rgba(255, 255, 255, 0.5); 
 
             padding: 1rem 2rem;
             color: #fff;
@@ -92,7 +92,7 @@
         }
 
         #emailForm {
-            background-color: rgba(255, 255, 255, 0.1); /* R, G, B values for white with 50% opacity */
+            background-color: rgba(255, 255, 255, 0.1); 
 
             width: 100%;
             padding: 1rem;
